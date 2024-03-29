@@ -11,10 +11,10 @@ def call () {
                 }
             }
             stage('Test') {
-                steps {
                     when {
                         expression { env.BRANCH_NAME ==~ ".*" }
                     }
+                    steps {
                     echo 'Hello World'
                 }
             }
