@@ -13,21 +13,17 @@ def call () {
             stage('Test') {
                 steps {
                     when {
-
                         expression { env.BRANCH_NAME ==~ ".*" }
                     }
                     echo 'Hello World'
                 }
             }
             stage('Code Quality') {
-
                 when {
                     allOf {
-                        expression { env.BRANCH_NAME != null }
-                        expression { env.TAG_NAME == null }
+                        expression { env.BRANCH_NAME ==~ ".*" }
+                        expression { env.TAG_NAME !=~ ".*" }
                     }
-
-
                 }
                 steps {
                     echo 'Hello World'
