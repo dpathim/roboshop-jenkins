@@ -11,5 +11,7 @@ def compile() {
     if (env.codeType == "static") {
         print 'static'
     }
-
+    if (env.codeType == "golang") {
+        print 'GOLANG'
+    }
 }
