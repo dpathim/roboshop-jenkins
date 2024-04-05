@@ -15,34 +15,22 @@ def call() {
                 branches: [[name: branch_name]],
                 userRemoteConfigs: [[url: "https://github.com/dpathim/${component}"]]
         )
-        stage('compile Code') {
-            common.compile()
 
-        }
-        if (env.TAG_NAME == null) {
-
-            stage('Test') {
-                print 'Hello'
-        }
-            stage('Code Quality') {
-                print 'Hello'
-
-            }
-     }
-        if (env.BRANCH_NAME == "main") {
-        stage('Code Security') {
-            print 'Hello'
-
-          }
-
-        }
         if (env.TAG_NAME ==~ ".*") {
-        stage('Release') {
-            print 'Hello'
-
+            common.compile()
+            common.release()
+        } else {
+            if (env.BRANCH_NAME == "main") {
+                common.compile()
+                common.test()
+                common.codeQuality()
+                common.codeSecurity()
+            } else {
+                common.compile()
+                common.test()
+                common.codeQuality()
+            }
         }
 
-        }
     }
-
 }

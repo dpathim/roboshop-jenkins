@@ -1,17 +1,43 @@
 def compile() {
-    if (env.codeType == "maven") {
-        sh '/root/maven/bin/mvn package'
+    stage('Compile Code') {
+        if (env.codeType == "maven") {
+            sh '/root/maven/bin/mvn package'
+        }
+        if (env.codeType == "nodejs") {
+            print 'NODEJS'
+        }
+        if (env.codeType == "python") {
+            print 'PYTHON'
+        }
+        if (env.codeType == "static") {
+            print 'static'
+        }
+        if (env.codeType == "golang") {
+            print 'GOLANG'
+        }
     }
-    if (env.codeType == "nodejs") {
-        print 'NODEJS'
+}
+
+def test() {
+    stage( 'Test Cases') {
+        print 'Test'
     }
-    if (env.codeType == "python") {
-        print 'PYTHON'
+}
+
+def CodeQuality() {
+    stage( 'Code Quality') {
+        print 'Code Quality'
     }
-    if (env.codeType == "static") {
-        print 'static'
+}
+
+def CodeSecurity() {
+    stage( 'Code Security') {
+        print 'Code Security'
     }
-    if (env.codeType == "golang") {
-        print 'GOLANG'
+}
+
+def release() {
+    stage( 'Release') {
+        print 'Release'
     }
 }
