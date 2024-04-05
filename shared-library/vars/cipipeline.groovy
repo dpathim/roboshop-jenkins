@@ -20,15 +20,17 @@ def call() {
 
         }
         if (env.TAG_NAME == null) {
+
             stage('Test') {
                 print 'Hello'
         }
+            stage('Code Quality') {
+                print 'Hello'
+
+            }
      }
 
-        stage('Code Quality') {
-            print 'Hello'
 
-        }
 
         stage('Code Security') {
             print 'Hello'
