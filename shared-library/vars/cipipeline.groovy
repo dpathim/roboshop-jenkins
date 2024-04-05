@@ -1,16 +1,16 @@
 def call() {
 
-    node('workstation1'){
+    node('workstation1') {
         sh "find . | sed -e '1d' |xargs rm -rf "
 
-        if(env.TAG_NAME ==~ ".*") {
+        if (env.TAG_NAME ==~ ".*") {
             env.branch_name = "refs/tags/${env.TAG_NAME}"
 
         } else {
             env.branch_name = "${env.BRANCH_NAME}"
 
         }
-       // git branch: '${BRANCH_NAME}', url: "https://github.com/dpathim/${component}"
+        // git branch: '${BRANCH_NAME}', url: "https://github.com/dpathim/${component}"
         checkout scmGit(
                 branches: [[name: branch_name]],
                 userRemoteConfigs: [[url: "https://github.com/dpathim/${component}"]]
@@ -19,18 +19,11 @@ def call() {
             common.compile()
 
         }
-        if(env.TAG_NAME == null) {
-            print 'NULL'
-        } else {
-            print 'NOTNULL'
+        if (env.TAG_NAME != null) {
+            stage('Test') {
+                print 'Hello'
         }
-        sh 'exit 1'
-
-
-        stage('Test') {
-            print 'Hello'
-
-        }
+     }
 
         stage('Code Quality') {
             print 'Hello'
