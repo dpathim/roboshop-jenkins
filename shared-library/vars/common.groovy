@@ -1,7 +1,7 @@
 def compile() {
 
-    if (env.codeType == "python") {
-        return "Return as Python Do not need Compilation"
+    if (env.codeType == "python"  || env.codeType == "static" ) {
+        return "Return, Do not need Compilation"
     }
 
     stage('Compile Code') {
@@ -12,9 +12,7 @@ def compile() {
             sh 'npm install'
         }
 
-        if (env.codeType == "static") {
-            print 'static'
-        }
+
         if (env.codeType == "golang") {
             print 'GOLANG'
         }
