@@ -19,6 +19,13 @@ def call() {
             common.compile()
 
         }
+        if(env.TAG_NAME == null) {
+            print 'NULL'
+        } else {
+            print 'NOTNULL'
+        }
+        sh 'exit 1'
+
 
         stage('Test') {
             print 'Hello'
