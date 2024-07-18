@@ -8,5 +8,5 @@
     config: "{{ lookup('file', '/tmp/sjob.xml') }}"
     name: "{{ item.folder_name }}/{{ item.job_name }}"
     password: admin123
-    url: http://34.200.237.58:8080
+    url: http://172.31.15.149:8080
     user: admin
